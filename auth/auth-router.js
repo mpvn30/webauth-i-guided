@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const bcrypt = require('bcryptjs')
 
 const Users = require('../users/users-model.js');
 
@@ -30,5 +31,10 @@ router.post('/login', (req, res) => {
       res.status(500).json(error);
     });
 });
+
+router.get('/hash', (req, res) => {
+  const user = req.body;
+  console.log(user.password = bcrypt.hashSync(user.password, 10)) 
+})
 
 module.exports = router;
